@@ -121,59 +121,176 @@ def crumbs_for(path, by_path):
     return trail
 
 
-def schema_blocks(meta, body, canonical, trail):
+# Structured data. Every person and organisation named on the site is defined once in entities() and referred
+# to by @id everywhere else, so the same thing is the same node on every page (entity consolidation).
+# @ids of entities use the production domain even in preview builds, so they never change with the build host.
+ENTITY_BASE = "https://outerfab.com"
+ORG_ID = ENTITY_BASE + "/#org"
+SZOSS_EVENT_ID = ENTITY_BASE + "/events/szoss/#event"
+
+
+def eid(slug):
+    return ENTITY_BASE + "/#" + slug
+
+
+def ref(slug):
+    return {"@id": ORG_ID if slug == "org" else SZOSS_EVENT_ID if slug == "szoss" else eid(slug)}
+
+
+def entities():
+    """slug -> (node, names to look for in page text). Facts come from the pages of this site."""
+    def org(slug, name, url, **extra):
+        return dict({"@type": "Organization", "@id": eid(slug), "name": name, "url": url, "sameAs": [url]}, **extra)
+    return {
+        "org": ({"@type": "Organization", "@id": ORG_ID, "name": "Outerfab", "url": ENTITY_BASE + "/",
+                 "logo": {"@type": "ImageObject", "url": ENTITY_BASE + "/assets/logo-512.png", "width": 512, "height": 512},
+                 "description": "Post-fab services for small silicon batches, including die preparation, chip-on-board bonding, optional testing, packing and fulfilment.",
+                 "email": "bonding@outerfab.com",
+                 "contactPoint": {"@type": "ContactPoint", "contactType": "sales and technical enquiries", "email": "bonding@outerfab.com", "availableLanguage": "en"},
+                 "address": {"@type": "PostalAddress", "addressLocality": "Shenzhen", "addressCountry": "CN"},
+                 "founder": [ref("giovanni-schirinzi"), ref("stuart-childs")],
+                 "member": [ref("stephan-boekelmann")],
+                 "areaServed": ["Europe", "United States", "Asia-Pacific"],
+                 "sameAs": ["https://github.com/outerfab"]}, []),
+        "giovanni-schirinzi": ({"@type": "Person", "@id": eid("giovanni-schirinzi"), "name": "Giovanni Schirinzi",
+                                "jobTitle": "Co-founder", "description": "Supply chain, product development and marketing.",
+                                "email": "giovanni@outerfab.com", "worksFor": ref("org"), "url": ENTITY_BASE + "/about/"}, ["Giovanni Schirinzi"]),
+        "stuart-childs": ({"@type": "Person", "@id": eid("stuart-childs"), "name": "Stuart Childs",
+                           "jobTitle": ["Co-founder, Outerfab", "Production Manager, Tiny Tapeout"],
+                           "description": "Production, operations and technical project management.",
+                           "email": "stuart@outerfab.com", "worksFor": [ref("org"), ref("tiny-tapeout")], "url": ENTITY_BASE + "/about/"}, ["Stuart Childs"]),
+        "stephan-boekelmann": ({"@type": "Person", "@id": eid("stephan-boekelmann"), "name": "Stephan Bökelmann",
+                                "alternateName": ["Stephan Boekelmann", "MaxClerkwell"],
+                                "description": "Wire bonding, process development and tooling. Physicist, engineer and KiCad community contributor.",
+                                "email": "stephan@outerfab.com", "affiliation": ref("org"), "url": ENTITY_BASE + "/about/",
+                                "sameAs": ["https://github.com/MaxClerkwell", "https://maxclerkwell.tech"]}, ["Stephan Bökelmann"]),
+        "tim-ansell": ({"@type": "Person", "@id": eid("tim-ansell"), "name": "Tim Ansell", "alternateName": "mithro",
+                        "jobTitle": "Founder, wafer.space", "worksFor": ref("wafer-space"),
+                        "sameAs": ["https://mith.ro", "https://github.com/mithro"]}, ["Tim Ansell"]),
+        "biwei-xie": ({"@type": "Person", "@id": eid("biwei-xie"), "name": "Biwei Xie",
+                       "jobTitle": ["Associate Professor", "ECOS Open Silicon lead"], "worksFor": ref("ict-cas")}, ["Biwei Xie"]),
+        "tiny-tapeout": (org("tiny-tapeout", "Tiny Tapeout", "https://tinytapeout.com/"), ["Tiny Tapeout"]),
+        "wafer-space": (org("wafer-space", "wafer.space", "https://wafer.space/", founder=ref("tim-ansell")), ["wafer.space"]),
+        "crowd-supply": (org("crowd-supply", "Crowd Supply", "https://www.crowdsupply.com/"), ["Crowd Supply"]),
+        "chaihuo": (org("chaihuo", "Chaihuo Maker Space", "https://www.chaihuo.org/", alternateName="柴火创客空间"), ["Chaihuo"]),
+        "ict-cas": ({"@type": "Organization", "@id": eid("ict-cas"), "name": "Institute of Computing Technology, Chinese Academy of Sciences",
+                     "alternateName": "ICT, CAS"}, ["Institute of Computing Technology"]),
+        "szoss": ({"@type": "Event", "@id": SZOSS_EVENT_ID, "name": "1st Shenzhen Open Source Silicon Meetup",
+                   "alternateName": ["SZOSS", "首届深圳开源芯片交流会"],
+                   "startDate": "2026-11-11T16:00:00+08:00", "endDate": "2026-11-11T19:00:00+08:00",
+                   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                   "eventStatus": "https://schema.org/EventScheduled", "url": ENTITY_BASE + "/events/szoss/",
+                   "description": "The first Shenzhen Open Source Silicon Meetup: an afternoon of technical exchange, silicon demos and conversation with researchers, open-source contributors and Shenzhen's hardware community.",
+                   "image": ENTITY_BASE + "/assets/szoss/social.png", "inLanguage": "en",
+                   "location": {"@type": "Place", "name": "Chaihuo Maker Space", "address": {"@type": "PostalAddress", "addressLocality": "Shenzhen", "addressRegion": "Guangdong", "addressCountry": "CN"}},
+                   "organizer": ref("org"), "sponsor": ref("chaihuo"),
+                   "performer": [ref("tim-ansell"), ref("biwei-xie"), ref("stephan-boekelmann"), ref("stuart-childs")],
+                   "sameAs": ["https://events.outerfab.com/events/9e3aaaed-657f-4bb0-8c0d-db0ea9d1b2c3/"]}, ["Shenzhen Open Source Silicon Meetup", "SZOSS"]),
+    }
+
+
+def id_refs(node):
+    """All @id references (objects that hold nothing but an @id) inside a node."""
+    if isinstance(node, dict):
+        if list(node) == ["@id"]:
+            yield node["@id"]
+        else:
+            for v in node.values():
+                yield from id_refs(v)
+    elif isinstance(node, list):
+        for v in node:
+            yield from id_refs(v)
+
+
+def schema_blocks(meta, body, canonical, trail, where=""):
     kinds = [k.strip() for k in meta.get("schema", "").split(",") if k.strip()]
-    org = {"@type": "Organization", "@id": SITE_URL + "/#org", "name": "Outerfab", "url": SITE_URL + "/",
-           "logo": SITE_URL + "/assets/logo-512.png",
-           "description": "Post-fab services for small silicon batches, including die preparation, chip-on-board bonding, optional testing, packing and fulfilment.",
-           "email": "bonding@outerfab.com",
-           "contactPoint": {"@type": "ContactPoint", "contactType": "sales and technical enquiries", "email": "bonding@outerfab.com", "availableLanguage": "en"},
-           "founder": [{"@type": "Person", "name": "Giovanni Schirinzi"}, {"@type": "Person", "name": "Stuart Childs"}],
-           "areaServed": ["Europe", "United States", "Asia-Pacific"]}
-    graph = []
+    ents = entities()
+    by_id = {node["@id"]: (slug, node) for slug, (node, _) in ents.items()}
+    site_id, page_id = SITE_URL + "/#site", canonical + "#page"
     updated = meta.get("updated")
-    if "website" in kinds:
-        graph.append({"@type": "WebSite", "@id": SITE_URL + "/#site", "name": "Outerfab", "url": SITE_URL + "/",
-                      "publisher": {"@id": SITE_URL + "/#org"}, "inLanguage": "en"})
+    text = strip_tags(body)
+    graph, main = [], []
+
     if "event" in kinds:
-        graph.append({"@type": "Event", "name": "1st Shenzhen Open Source Silicon Meetup",
-                      "startDate": "2026-11-11T16:00:00+08:00", "endDate": "2026-11-11T19:00:00+08:00",
-                      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                      "eventStatus": "https://schema.org/EventScheduled", "url": canonical,
-                      "description": meta["description"], "image": SITE_URL + "/assets/szoss/social.png",
-                      "location": {"@type": "Place", "name": "Chaihuo Maker Space", "address": {"@type": "PostalAddress", "addressLocality": "Shenzhen", "addressCountry": "CN"}},
-                      "organizer": {"@type": "Organization", "name": "Outerfab", "url": SITE_URL + "/"},
-                      "sponsor": {"@type": "Organization", "name": "Chaihuo Maker Space", "url": "https://www.chaihuo.org/"}})
-    if "organization" in kinds:
-        graph.append(org)
+        main.append(ref("szoss"))
+    if "organization" in kinds or "about" in kinds:
+        main.append(ref("org"))
     if "service" in kinds:
         graph.append({"@type": "Service", "@id": canonical + "#service", "name": meta.get("service_type", meta["title"]),
                       "serviceType": meta.get("service_type", ""), "description": meta.get("service_description", meta["description"]),
-                      "provider": {"@id": SITE_URL + "/#org"}, "url": canonical})
+                      "provider": ref("org"), "url": canonical})
+        main.append({"@id": canonical + "#service"})
     if "techarticle" in kinds:
         graph.append({"@type": "TechArticle", "@id": canonical + "#article", "headline": meta.get("name", meta["title"]),
                       "description": meta["description"],
                       **({"datePublished": meta["published"]} if meta.get("published") else {}),
                       **({"dateModified": updated} if updated else {}),
-                      "author": {"@id": SITE_URL + "/#org"}, "publisher": {"@id": SITE_URL + "/#org"},
-                      "mainEntityOfPage": canonical, "inLanguage": "en"})
-    for kind, typ in (("collection", "CollectionPage"), ("contact", "ContactPage"), ("about", "AboutPage")):
-        if kind in kinds:
-            graph.append({"@type": typ, "@id": canonical + "#page", "name": meta.get("name", meta["title"]),
-                          "description": meta["description"], "url": canonical, "isPartOf": {"@id": SITE_URL + "/#site"}})
-    if "faq" in kinds:
-        items = re.findall(r"<details><summary>(.*?)</summary>\s*<p>(.*?)</p></details>", body, re.S)
-        graph.append({"@type": "FAQPage", "mainEntity": [
-            {"@type": "Question", "name": strip_tags(q), "acceptedAnswer": {"@type": "Answer", "text": strip_tags(a)}} for q, a in items]})
+                      "author": ref("org"), "publisher": ref("org"),
+                      "mainEntityOfPage": {"@id": page_id}, "inLanguage": "en"})
+        main.append({"@id": canonical + "#article"})
     if "glossary" in kinds:
         terms = re.findall(r'<dt id="([^"]+)">(.*?)</dt>\s*<dd>(.*?)</dd>', body, re.S)
-        graph.append({"@type": "DefinedTermSet", "@id": canonical + "#terms", "name": "Chip-on-board glossary", "hasDefinedTerm": [
-            {"@type": "DefinedTerm", "name": strip_tags(t), "description": strip_tags(d), "url": canonical + "#" + i} for i, t, d in terms]})
+        graph.append({"@type": "DefinedTermSet", "@id": canonical + "#terms", "name": "Chip-on-board glossary", "publisher": ref("org"), "hasDefinedTerm": [
+            {"@type": "DefinedTerm", "name": strip_tags(t), "description": strip_tags(d), "url": canonical + "#" + i,
+             "inDefinedTermSet": {"@id": canonical + "#terms"}} for i, t, d in terms]})
+        main.append({"@id": canonical + "#terms"})
+
+    # the page itself: every page gets one
+    types = [t for k, t in (("collection", "CollectionPage"), ("contact", "ContactPage"), ("about", "AboutPage")) if k in kinds] or ["WebPage"]
+    page = {"@type": types, "@id": page_id, "name": meta.get("name", meta["title"]), "description": meta["description"],
+            "url": canonical, "isPartOf": {"@id": site_id}, "inLanguage": "en", "publisher": ref("org")}
+    if meta.get("published"):
+        page["datePublished"] = meta["published"]
+    if updated:
+        page["dateModified"] = updated
+    if "faq" in kinds:
+        items = re.findall(r"<details><summary>(.*?)</summary>\s*<p>(.*?)</p></details>", body, re.S)
+        page["@type"] = types + ["FAQPage"]
+        page["mainEntity"] = [{"@type": "Question", "name": strip_tags(q), "acceptedAnswer": {"@type": "Answer", "text": strip_tags(a)}} for q, a in items]
+        if main:
+            page["about"] = main if len(main) > 1 else main[0]
+    elif main:
+        page["mainEntity"] = main if len(main) > 1 else main[0]
+    if len(page["@type"]) == 1:
+        page["@type"] = page["@type"][0]
+    if meta["path"] == "/":
+        graph.append({"@type": "ImageObject", "@id": SITE_URL + "/#home-photo", "contentUrl": SITE_URL + "/assets/img/home-wafer-1280.webp",
+                      "width": 1280, "height": 721, "caption": "Close-up of the wafer.space Run 1 wafer with multiple silicon designs",
+                      "creator": ref("tim-ansell"), "creditText": "Tim Ansell", "copyrightNotice": "Tim Ansell, wafer.space Run 1",
+                      "license": "https://creativecommons.org/licenses/by/4.0/", "acquireLicensePage": "https://wafer.space/",
+                      "about": ref("wafer-space")})
+        page["primaryImageOfPage"] = {"@id": SITE_URL + "/#home-photo"}
+    main_ids = {m["@id"] for m in main}
+    mentions = [ref(slug) for slug, (node, names) in ents.items()
+                if node["@id"] not in main_ids and any(n in text for n in names)]
+    if mentions:
+        page["mentions"] = mentions
     if len(trail) > 1:
-        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+        graph.append({"@type": "BreadcrumbList", "@id": canonical + "#breadcrumb", "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE_URL + u} for i, (n, u) in enumerate(trail)]})
-    if not graph:
-        return ""
+        page["breadcrumb"] = {"@id": canonical + "#breadcrumb"}
+    graph.insert(0, page)
+    graph.insert(0, {"@type": "WebSite", "@id": site_id, "name": "Outerfab", "url": SITE_URL + "/", "publisher": ref("org"), "inLanguage": "en"})
+
+    # pull in every entity that is referred to, so each @id is defined in the same document
+    have = {n["@id"] for n in graph if "@id" in n}
+    todo = [i for n in graph for i in id_refs(n)]
+    while todo:
+        i = todo.pop()
+        if i in have or i not in by_id:
+            continue
+        slug, node = by_id[i]
+        if slug == "org" and "organization" not in kinds and "about" not in kinds:
+            node = {k: node[k] for k in ("@type", "@id", "name", "url", "logo", "sameAs")}  # short form away from home and about
+        graph.append(node)
+        have.add(i)
+        todo.extend(id_refs(node))
+    ids = [n["@id"] for n in graph if "@id" in n]
+    for i in sorted(set(ids)):
+        if ids.count(i) > 1:
+            warnings.append("%s: structured data defines %s twice" % (where, i))
+    for i in sorted({i for n in graph for i in id_refs(n)} - set(ids)):
+        warnings.append("%s: structured data refers to %s, which is not defined on the page" % (where, i))
     return '<script type="application/ld+json">%s</script>' % json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
 
 
@@ -286,7 +403,7 @@ def main():
             common, robots=("noindex,nofollow" if NOINDEX else "noindex,follow" if noindex else "index,follow,max-image-preview:large"),
             title=html.escape(meta["title"]), description=html.escape(meta["description"]), canonical=canonical,
             color_scheme="light" if light else "dark", og_type=meta.get("type", "website"),
-            schema=schema_blocks(meta, body, canonical, trail), body_class="theme-light" if light else "theme-dark",
+            schema=schema_blocks(meta, body, canonical, trail, p["file"]), body_class="theme-light" if light else "theme-dark",
             page_head=('<link rel="stylesheet" href="/assets/szoss/event.css">' if event else ""),
             header=header, crumbs=crumbs_html(trail), body=body_html, footer=footer, analytics=analytics), p["file"])
         if event:
