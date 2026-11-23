@@ -129,12 +129,17 @@ ORG_ID = ENTITY_BASE + "/#org"
 SZOSS_EVENT_ID = ENTITY_BASE + "/events/szoss/#event"
 
 
+# Entities that already have a canonical @id elsewhere keep it, so other sites and this one describe the same node.
+CANONICAL_IDS = {"org": ORG_ID, "szoss": SZOSS_EVENT_ID,
+                 "stephan-boekelmann": "https://maxclerkwell.tech/#person"}  # also used by nabla-b.engineering
+
+
 def eid(slug):
-    return ENTITY_BASE + "/#" + slug
+    return CANONICAL_IDS.get(slug, ENTITY_BASE + "/#" + slug)
 
 
 def ref(slug):
-    return {"@id": ORG_ID if slug == "org" else SZOSS_EVENT_ID if slug == "szoss" else eid(slug)}
+    return {"@id": eid(slug)}
 
 
 def entities():
@@ -161,8 +166,9 @@ def entities():
         "stephan-boekelmann": ({"@type": "Person", "@id": eid("stephan-boekelmann"), "name": "Stephan Bökelmann",
                                 "alternateName": ["Stephan Boekelmann", "MaxClerkwell"], "jobTitle": "Co-founder",
                                 "description": "Wire bonding, process development and tooling. Physicist, engineer and KiCad community contributor.",
-                                "email": "stephan@outerfab.com", "worksFor": ref("org"), "url": ENTITY_BASE + "/about/",
-                                "sameAs": ["https://github.com/MaxClerkwell", "https://maxclerkwell.tech"]}, ["Stephan Bökelmann"]),
+                                "email": "stephan@outerfab.com", "worksFor": ref("org"), "url": "https://maxclerkwell.tech/",
+                                "sameAs": ["https://www.wikidata.org/wiki/Q141502495", "https://orcid.org/0000-0002-2119-0064",
+                                           "https://github.com/maxclerkwell", ENTITY_BASE + "/about/"]}, ["Stephan Bökelmann"]),
         "tim-ansell": ({"@type": "Person", "@id": eid("tim-ansell"), "name": "Tim Ansell", "alternateName": "mithro",
                         "jobTitle": "Founder, wafer.space", "worksFor": ref("wafer-space"),
                         "sameAs": ["https://mith.ro", "https://github.com/mithro"]}, ["Tim Ansell"]),
