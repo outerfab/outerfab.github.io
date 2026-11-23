@@ -1,0 +1,72 @@
+---
+title: Wire bond testing for chip-on-board assemblies — Outerfab
+name: Testing
+description: Electrical checks for open wire bonds and shorts on chip-on-board assemblies, with test coverage, expected readings and reporting agreed for your job.
+path: /services/testing/
+updated: 2026-10-09
+theme: dark
+schema: service, faq
+service_type: Electrical testing of wire-bonded boards
+service_description: Electrical testing of chip-on-board assemblies. Coverage, readings and report format are agreed for each job.
+---
+<section class="page-head" aria-labelledby="h1">
+  <div class="wrap">
+    <h1 id="h1">Electrical testing for bonded boards</h1>
+    <p class="lede">Open connections and shorts can leave a bonded board unusable. We agree which pads to check, the expected readings and the report format for your job.</p>
+    <div class="btn-row"><a class="btn ghost" href="/resources/pcb-design-for-cob/">read the design guide</a></div>
+    <p class="meta-line"></p>
+    <nav class="toc" aria-label="On this page"><ol><li><a href="#what-h">Method</a></li><li><a href="#input-h">Information to provide</a></li><li><a href="#report-h">Report</a></li></ol></nav>
+  </div>
+</section>
+
+<section aria-labelledby="what-h">
+  <div class="wrap spec">
+    <h2 id="what-h">standard testing</h2>
+    <div class="spec-body">
+      <span id="what"></span>
+      <p class="lede">The standard method checks for three electrical faults on the pads included in the agreed test.</p>
+      <figure class="fig">{{fig_faults}}<figcaption>Open connections, shorts to ground and shorts to a neighbouring pad.</figcaption></figure>
+      <ul class="die">
+        <li><strong>Open.</strong> The wire does not connect the die pad to the board pad.</li>
+        <li><strong>Short to ground.</strong> The wire or its pad touches ground.</li>
+        <li><strong>Short to neighbour.</strong> Two wires touch each other.</li>
+      </ul>
+      <p>Signal pads can be measured through the die's ESD structures at three currents: 10 &micro;A, 100 &micro;A and 1 mA. Supply pads with decoupling capacitors use a capacitor-charge measurement instead.</p>
+      <p>We can create custom testing methods if you require something different to the standard testing procedure.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="input-h">
+  <div class="wrap spec">
+    <h2 id="input-h">Information to provide</h2>
+    <div class="spec-body">
+      <span id="you"></span>
+      <p>We need your expected readings to decide whether the measured result is correct for your die. Send this with the layout:</p>
+      <ul class="die"><li>Which pins to probe after bonding.</li><li>Expected diode readings from signal pins to ground.</li><li>Pins that should be shorted together, such as ground pads.</li><li>Pins that should read open.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="report-h">
+  <div class="wrap spec">
+    <h2 id="report-h">Report and interpretation</h2>
+    <div class="spec-body">
+      <span id="report"></span><span id="rep-h"></span>
+      <p>Before production, a testing method will be confirmed.</p>
+      <p>Details to agree for the report include:</p>
+      <ul class="die"><li>Board or panel identity and position.</li><li>Pass or fail against the agreed readings, with failed boards counted.</li><li>Test timestamp and tester identification.</li><li>Agreed marking and handling of failed boards.</li></ul>
+      
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="faq-h">
+  <div class="wrap spec"><h2 id="faq-h">Questions</h2><div class="spec-body"><div class="faq">
+    <details><summary>Is testing included with bonding?</summary><p>The quote records the agreed test coverage and cost for your job.</p></details>
+    <details><summary>Can you test before encapsulation?</summary><p>Yes, this is possible if required.</p></details>
+    <details><summary>Can I have the raw test results?</summary><p>Yes we can share all the testing data.</p></details>
+    
+    <details><summary>Does a pass mean the chip works?</summary><p>No. The test checks the agreed electrical connections, not the function of the die.</p></details>
+  </div></div></div>
+</section>

@@ -1,0 +1,31 @@
+{
+  "formspark_id": "0YBWX9nrU",
+  "szoss_formspark_id": "DqnkfJRKy",
+  "redirects": [
+    {
+      "from": "/resources/shipping-die-to-china/",
+      "to": "/resources/die-handling/"
+    },
+    {
+      "from": "/resources/bond-pads-and-pitch/",
+      "to": "/resources/pcb-design-for-cob/"
+    },
+    {
+      "from": "/resources/how-we-test/",
+      "to": "/services/testing/"
+    },
+    {
+      "from": "/newsletter/",
+      "to": "/resources/"
+    },
+    {
+      "from": "/quote/",
+      "to": "/contact/"
+    },
+    {
+      "from": "/quote/thanks/",
+      "to": "/contact/thanks/"
+    }
+  ],
+  "newsletter_formspark_id": "3yqmNNst1"
+}

@@ -1,0 +1,139 @@
+---
+title: Small-batch chip-on-board wire bonding — Outerfab
+name: Chip-on-board bonding
+description: Prototype and small-batch COB assembly: aluminium wedge or gold wire bonding of bare die onto your PCB, epoxy glob-top and agreed electrical testing.
+path: /services/chip-on-board/
+updated: 2026-10-09
+theme: dark
+schema: service, faq
+service_type: Chip-on-board wire bonding
+service_description: Aluminium wedge or gold wire bonding of bare die onto printed circuit boards, with hard epoxy glob-top and electrical testing whose coverage is agreed for each job.
+---
+<section class="page-head" aria-labelledby="h1">
+  <div class="wrap">
+    <h1 id="h1"><span class="nb">Chip-on-board</span> wire bonding</h1>
+    <p class="lede">We attach bare die to your PCB, wire-bond the agreed pads and cover the assembly in hard epoxy. Test coverage is defined for each job.</p>
+    <div class="btn-row">
+      <a class="btn" href="https://outerfab.github.io/cob-request/">start a CoB request</a>
+      <a class="btn ghost" href="/resources/pcb-design-for-cob/">read the design guide</a>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="fig-h">
+  <div class="wrap spec">
+    <h2 id="fig-h">What is chip on board</h2>
+    <div class="spec-body">
+      <figure class="fig-dark">{{fig_section}}<figcaption>Section of a finished board: die on its attach pad, a wire from each die pad to a bond pad, glob-top over both.</figcaption></figure>
+      {{photo_bonded_board}}
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="io-h">
+  <div class="wrap spec">
+    <h2 id="io-h">how it works</h2>
+    <div class="spec-body">
+      <div class="two-col">
+        <div>
+          <h3>what we need</h3>
+          <ul class="die">
+            <li>Die, in a waffle pack, on a film frame or on tape and reel, with 10 to 20% spares.</li>
+            <li>A pad coordinate table or die layout, with pin 1 marked.</li>
+            <li>A bonding diagram, or ask us to help draw one.</li>
+            <li>Your board design, or a request to use our breakout template.</li>
+            <li>What to probe after bonding, and the readings to expect.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>what we provide</h3>
+          <ul class="die">
+            <li>Bonded boards made to specification.</li>
+            <li>Test results according to the agreed scope.</li>
+            <li>Remaining die returned as agreed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="opt-h">
+  <div class="wrap spec">
+    <h2 id="opt-h">Process options</h2>
+    <div class="spec-body">
+      <div class="table-wrap cob-process-options">
+        <table>
+          
+          <thead><tr><th scope="col">Option</th><th scope="col">Standard</th><th scope="col">Also available</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Wire</th><td>Aluminium, 1.0 mil, wedge bonded</td><td>Other thicknesses of aluminium wire. Gold wire with thermosonic bonding.</td></tr>
+            <tr><th scope="row">Glob-top</th><td>Hard AB epoxy, clear and colourless</td><td>Hard black epoxy</td></tr>
+            <tr><th scope="row">PCB</th><td>Your design</td><td>We design a board for you</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section aria-labelledby="cost-h">
+  <div class="wrap spec">
+    <h2 id="cost-h">What it costs</h2>
+    <div class="spec-body">
+      <p>The quote lists the job's cost drivers as separate line items.</p>
+      <ul class="die">
+        <li><strong>Die size and pad count</strong> More pads is more bonding time.</li>
+        <li><strong>Quantity</strong> Setup and non-recurring engineering costs matter most on small runs. Unit costs come down from 500 units and above, quoted as a separate line item.</li>
+        <li><strong>Wire</strong> Gold costs several times more per die than aluminium.</li>
+        <li><strong>Board</strong> Panelisation can help to reduce costs.</li>
+        <li><strong>Test coverage</strong> According to the complexity of your requirements.</li>
+        <li><strong>Shipping and packing</strong> Where it goes, and how it is packed.</li>
+      </ul>
+      <p><a href="/pricing/">How pricing works</a></p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="run-h">
+  <div class="wrap spec">
+    <h2 id="run-h">How a job runs</h2>
+    <div class="spec-body">
+      <ol class="jobsteps">
+        <li><strong>You send the details</strong> Die size, pad count, quantity, wire, glob-top, board status, deadline. Share these details through the <a href="/contact/">contact form</a>; we can clarify the rest together.</li>
+        <li><strong>We review and quote</strong> We may ask follow-up questions before sending a detailed quote.</li>
+        <li><strong>Design review</strong> We check your board against the rules above before anything is ordered.</li>
+        <li><strong>You ship the die</strong> We tell you what the customs paperwork needs; an <a href="/legal/export-compliance/">export compliance</a> confirmation is part of the order. See <a href="/resources/die-handling/">shipping die to China</a>.</li>
+        <li><strong>A trial panel, then the run</strong> We recommend bonding a small quantity of die for testing first, before completing the rest of the order.</li>
+        <li><strong>Report and ship</strong> Once production is completed we will share the results before packing your boards up and sending them to you.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="faq-h">
+  <div class="wrap spec">
+    <h2 id="faq-h">Questions</h2>
+    <div class="spec-body">
+      <div class="faq">
+        <details><summary>Can you bond die from Tiny Tapeout or wafer.space?</summary>
+          <p>Yes. Most of what we bond comes from those runs, on the standard slot sizes.</p></details>
+        <details><summary>Can you bond die to die?</summary>
+          <p>It is not a standard service. Send the geometry and we will say whether we can and what it would take.</p></details>
+        <details><summary>Can I get boards without glob-top, for probing?</summary>
+          <p>Yes, ask for it in the message. The bonds are fragile until they are covered.</p></details>
+        <details><summary>Do you test before encapsulation?</summary>
+          <p>Tell us in the message if you need it, and we will say whether it is possible for your job.</p></details>
+        <details><summary>What happens to failed boards?</summary>
+          <p>Agree failed-board handling in the job scope. If testing is included, the report states the recorded result.</p></details>
+        <details><summary>What if my die is not a standard slot size?</summary>
+          <p>Send the dimensions and the pad map. Non-standard is normal here.</p></details>
+      </div>
+    </div>
+  </div>
+</section>

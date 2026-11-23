@@ -1,0 +1,106 @@
+---
+title: PCB design for chip-on-board wire bonding — Outerfab
+name: PCB design for chip-on-board
+description: PCB design guidance for chip-on-board wire bonding: wire length and angle, pad pitch, clearance, surface finish and panelisation with gold or aluminium wire.
+path: /resources/pcb-design-for-cob/
+updated: 2026-10-09
+published: 2026-09-18
+theme: light
+type: article
+schema: techarticle
+---
+<section class="art" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="prose">
+      <h1 id="h1">PCB design for <span class="nb">chip-on-board</span> wire bonding</h1>
+      <p class="answer">Design a clear route from each die pad to its PCB bond pad. Keep wires short and uncrossed, leave room for the bonding tool and share the complete panel outline for review before ordering boards.</p>
+      
+      <div class="toc">
+        <ol>
+          <li><a href="#quick">Quick reference</a></li>
+          <li><a href="#wires">Wire bond design rules</a></li>
+          <li><a href="#clearance">Room for the bonding tool</a></li>
+          <li><a href="#pads">Pads, finish and mask</a></li>
+          <li><a href="#panel">Arranging boards into a panel</a></li>
+        </ol>
+      </div>
+
+      <h2 id="quick">Quick reference</h2>
+      <div class="table-wrap pcb-quick-reference">
+        <table>
+          
+          <thead><tr><th scope="col">Rule</th><th scope="col">Value</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Wire length</th><td>At least 1 mm, or twice the die thickness if greater. Under 3 mm.</td></tr>
+            <tr><th scope="row">Wire angle</th><td>Guide: no more than 45&deg; from straight out of the die edge. No crossing wires.</td></tr>
+            <tr><th scope="row">Clearance around the bond pads</th><td>No components within 2 mm of the die. Low-profile parts only (max 1 mm tall) within 5 mm of the die.</td></tr>
+            <tr><th scope="row">PCB bond pad pitch</th><td>Over 200 &micro;m</td></tr>
+            <tr><th scope="row">Surface finish</th><td>ENIG or ENEPIG. Solder mask fully open between the die and the bond pads, with at least 6 mil (150 &micro;m) clearance around the pads. No solder paste on the bond pads.</td></tr>
+            <tr><th scope="row">Silkscreen</th><td>None in the bonding area</td></tr>
+            <tr><th scope="row">Panel dimensions and working edges</th><td>Confirm these with the bonding partner for the selected process and jig.</td></tr>
+            <tr><th scope="row">Board thickness</th><td>Minimum 0.8mm</td></tr>
+            <tr><th scope="row">Fiducials</th><td>At least two visible after die attach</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+
+      <span id="rules"></span>
+      <h2 id="wires">Wire bond design rules</h2>
+      <p>Place PCB bond pads around the die attach pad so each wire has a clear route.</p>
+      <figure class="fig">{{fig_wire_rules}}<figcaption>Fig. 1 &mdash; wire rules</figcaption></figure>
+      <ul>
+        <li><strong>No crossing.</strong> Wires must not cross each other.</li>
+        <li id="angle"><strong>Angle.</strong> Aim for each wire to leave the die at no more than 45&deg; from straight out. It is a guide, not a hard limit: a steeper wire may be acceptable, and we flag any that concern us in the review. Pads near die corners tend to produce the longest and steepest wires; plan the PCB pad positions with those corners in mind.</li>
+        <li><strong>Maximum length.</strong> Under 3 mm. Keep wires as short as practical; even 3 mm adds inductance.</li>
+        <li id="length"><strong>Minimum length.</strong> 1 mm from the die, or twice the die thickness, whichever is greater.</li>
+      </ul>
+
+      <h3 id="pitch">Pad pitch</h3>
+      <p>PCB bond pad pitch should be over 200 &micro;m so the tool can land without touching the neighbouring pad.</p>
+      <h3 id="metal">Pad metal and wire</h3>
+      <p>Aluminium wire at 1.0 mil is our standard and suits the aluminium pads on GF180MCU die.  Aluminium wire thickness down to 0.6mil diameter are available. Gold wire thermosonic bonding is also possible.</p>
+
+      <h2 id="clearance">Leaving room for the bonding tool</h2>
+      <p>Your other components are normally assembled before the die goes on, so they are already on the board while the machine works. The bonding tool comes down onto each pad from above and needs space. A component that is too close or too tall can block it.</p>
+      <figure class="fig">{{fig_zones}}<figcaption>Fig. 2 &mdash; clearance zones</figcaption></figure>
+      <ul>
+        <li><strong>Zone 1, up to 2 mm beyond the pads:</strong> no components.</li>
+        <li><strong>Zone 2, 2 to 5 mm:</strong> low-profile parts only, about 1 mm tall or less, such as 0402 or 0603 passives.</li>
+        <li><strong>Beyond 5 mm:</strong> taller parts such as connectors, pin headers, crystals and electrolytic capacitors.</li>
+      </ul>
+      
+      
+      <div class="callout"><p>These clearances are recommended starting points. If your layout cannot meet them, send it to us and we will check it before ordering PCBs.</p></div>
+
+      <h2 id="pads">Pads, finish and mask</h2>
+      <div class="table-wrap pcb-pad-rules">
+        <table>
+          
+          <thead><tr><th scope="col">Item</th><th scope="col">Rule</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Surface finish</th><td>ENIG or ENEPIG surface finish on the PCB. No solderpaste on the bond pads.</td></tr>
+            <tr><th scope="row">Solder mask</th><td>Open the mask fully over the bond pads and the die attach pad. No mask or silkscreen on the pads themselves. At least 6 mil (150 &micro;m) clearance around the pads.</td></tr>
+            <tr><th scope="row">Die attach pad</th><td>Flat. Avoid open vias under the die, or have them filled and capped, so the adhesive does not wick away. Make the pad 0.3 mm larger than the die on every side (0.6 mm wider and taller in total).</td></tr>
+            <tr><th scope="row">Underside</th><td>Components on the back are acceptable, including under the bonding area, but a flat, clear underside is preferable. Boards have been bonded with a connector and capacitors beneath the die, on a jig with slots cut to clear them. If you have underside parts, tell us their heights and we make a jig to suit.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="panel">Arranging boards into a panel</h2>
+      <p>The bonding partner confirms the panel format, working edges, tooling and fiducial positions for the selected process and jig. Share the full panel outline and board thickness before ordering. Arrange every board in the same orientation; routed slots may help with small boards. Panels should have rails on each side to ensure they are held securely during the bonding process.</p>
+      <figure class="fig">{{fig_panel_gold}}<figcaption>Fig. 3 &mdash; example panel layout</figcaption></figure>
+      
+      
+      
+      
+
+      <div class="article-foot">
+        <ul class="related">
+          <li>Service: <a href="/services/chip-on-board/">Chip-on-board bonding</a></li>
+          <li>Next: <a href="/services/testing/">How we test</a>, <a href="/resources/die-handling/">Supplying your die</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

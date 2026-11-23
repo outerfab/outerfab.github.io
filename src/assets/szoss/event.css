@@ -1,0 +1,133 @@
+/* Event-specific layout. The Outerfab design system remains unchanged. */
+.event-header .wrap { gap:24px; }
+.event-header nav { display:flex; align-items:center; gap:24px; margin-left:auto; }
+.event-header nav>a { display:flex; flex-direction:column; justify-content:center; min-height:44px; white-space:nowrap; }
+.event-header nav span { font-size:.75rem; }
+.event-header nav .btn { display:inline-flex; }
+.szoss { --event-blue:#a4b9ec; --event-rule:#45454c; }
+.szoss h1,.szoss h2,.szoss h3 { text-transform:none; letter-spacing:-.035em; }
+.szoss h1 { max-width:800px; font-size:clamp(2rem,4.4vw,3.9rem); line-height:1.13; margin:0; text-wrap:balance; }
+.szoss h2 { font-size:1.65rem; line-height:1.3; margin:0; }
+.szoss h3 { font-size:1.22rem; line-height:1.35; margin:0; }
+.szoss p { max-width:64ch; margin:0 0 16px; }
+.szoss [lang=zh-Hans] { line-height:1.75; color:#c9c9c9; }
+.szoss .event-title-zh { font-size:clamp(1.15rem,2vw,1.65rem); color:#ececec; margin:16px 0 0; }
+.event-hero { padding-top:40px; padding-bottom:48px; }
+.event-heading { display:flex; justify-content:space-between; align-items:center; gap:48px; margin-bottom:32px; }
+.event-heading>div { min-width:0; }
+.event-badge { flex:none; width:168px; height:auto; }
+.event-facts { padding:20px 0; border-top:1px solid var(--event-rule); border-bottom:1px solid var(--event-rule); margin-bottom:24px; }
+.event-facts dl { display:grid; grid-template-columns:1.2fr .8fr 1fr; gap:24px; margin:0; }
+.event-facts dl>div+div { border-left:1px solid var(--event-rule); padding-left:24px; }
+.event-facts dt { color:#c9c9c9; font-size:.8rem; margin-bottom:8px; }
+.event-facts dd { margin:0; font-size:1rem; line-height:1.5; }
+.event-facts dd span { display:block; font-size:.9rem; }
+.event-opening { max-width:760px; }
+.event-intro { font-size:1.12rem; }
+.event-opening .btn { margin-top:4px; }
+.szoss .event-small { margin:12px 0 0; }
+.event-small,.event-privacy,.event-optional { font-size:.85rem; color:#c9c9c9; }
+.event-local-nav { display:none; }
+.event-section { border-top:1px solid var(--event-rule); display:grid; grid-template-columns:220px minmax(0,1fr); gap:40px; padding-top:40px; padding-bottom:48px; scroll-margin-top:92px; }
+.section-heading>p { margin:8px 0 0; }
+.event-topics ul { padding-left:20px; margin:20px 0 0; }
+.event-topics li { padding:0 0 16px 4px; }
+.event-topics li:last-child { padding-bottom:0; }
+.event-topics li span { display:block; margin-top:4px; }
+.event-speakers { display:block; }
+.event-speakers .section-heading { margin-bottom:28px; }
+.speaker-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px 40px; }
+.speaker { display:grid; grid-template-columns:112px minmax(0,1fr); gap:16px 24px; align-content:start; align-items:center; min-width:0; padding-bottom:24px; border-bottom:1px solid var(--event-rule); }
+.speaker-heading h3 { margin-bottom:10px; }
+.speaker .speaker-role { color:var(--event-blue); font-size:.875rem; line-height:1.55; margin:0; }
+.speaker-photo,.speaker-identity { width:112px; height:136px; object-fit:cover; object-position:center 25%; border-radius:8px; }
+.speaker-photo.tim-ansell { object-position:center 12%; }
+.speaker-photo.stuart-childs { object-position:32% center; }
+.speaker-identity { display:flex; flex-direction:column; justify-content:center; align-items:center; background:#243248; color:#ececec; font-family:var(--mono); font-size:1.6rem; }
+.speaker-identity span+span { font-size:.95rem; }
+.speaker-bio { grid-column:1/-1; }
+.speaker-bio summary { cursor:pointer; min-height:44px; display:list-item; align-content:center; color:var(--event-blue); font-size:.95rem; padding:8px 0; }
+.speaker-bio>div { padding-top:12px; }
+.speaker-bio p { font-size:1rem; }
+.speaker-bio p:last-child { margin-bottom:0; }
+.event-registration .section-heading>p:last-child { margin-top:24px; line-height:1.8; }
+.registration-panel { background:#151517; padding:32px; border:1px solid var(--event-rule); border-radius:8px; min-width:0; }
+#szoss-registration { margin-top:28px; }
+#szoss-registration fieldset { border:0; padding:0; margin:0; min-width:0; }
+#szoss-registration label { display:block; font-size:.95rem; margin-bottom:24px; }
+#szoss-registration input,#szoss-registration textarea { display:block; box-sizing:border-box; width:100%; margin-top:8px; border:1px solid #777781; border-radius:4px; background:#1c1c1e; color:#ececec; padding:12px; font:inherit; }
+#szoss-registration input { min-height:48px; }
+#szoss-registration textarea { resize:vertical; }
+.event-optional { display:block; margin-top:4px; }
+.event-form-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.event-trap { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+.szoss .event-privacy { margin-bottom:24px; line-height:1.65; }
+.event-notice { padding:16px; border:1px solid #df6b9f; border-radius:4px; }
+#registration-status:not(:empty) { margin-top:24px; padding:24px; border:1px solid #a4b9ec; border-radius:4px; overflow-wrap:anywhere; }
+#registration-status h3 { margin-bottom:16px; }
+#registration-status p:last-child { margin-bottom:0; }
+.szoss button:disabled { opacity:.65; cursor:wait; }
+#szoss-registration fieldset:disabled { opacity:.65; }
+.event-venue { display:grid; grid-template-columns:minmax(0,1fr) 190px; gap:32px; }
+.event-venue h3 { margin-bottom:12px; }
+.location-sponsor { align-self:start; background:#fafaf8; color:#172d52; border-radius:8px; padding:16px; }
+.location-sponsor p { font-size:.9rem; margin-bottom:16px; }
+.szoss .location-sponsor [lang=zh-Hans] { color:#53647c; }
+.location-sponsor img { display:block; width:158px; max-width:100%; height:auto; }
+.event-footer { border-top:1px solid #45454c; padding:32px 0; }
+.event-footer .wrap { display:flex; align-items:center; gap:32px; justify-content:space-between; }
+.event-footer svg { width:140px; height:auto; }
+.event-footer p { font-size:.9rem; margin:0; }
+.szoss a:focus-visible,.szoss summary:focus-visible,.event-header a:focus-visible,#szoss-registration input:focus-visible,#szoss-registration textarea:focus-visible { outline:2px solid #f26a1b; outline-offset:5px; }
+@media(max-width:1000px) {
+ .event-section { grid-template-columns:180px minmax(0,1fr); gap:32px; }
+ .event-venue { grid-template-columns:1fr; }
+ .location-sponsor { max-width:190px; }
+ .speaker { grid-template-columns:88px minmax(0,1fr); gap:16px; }
+ .speaker-photo,.speaker-identity { width:88px; height:112px; }
+ .registration-panel { padding:24px; }
+}
+@media(max-width:700px) {
+ .event-header .wrap { height:68px; min-height:68px; flex-wrap:nowrap; gap:16px; }
+ .event-header .brand { width:120px; max-width:40%; }
+ .event-header nav { gap:0; }
+ .event-header nav>a:not(.btn) { display:none; }
+ .event-header nav .btn { padding:0 14px; font-size:.85rem; }
+ .event-hero { padding-top:28px; padding-bottom:28px; }
+ .event-heading { gap:16px; align-items:flex-start; margin-bottom:24px; }
+ .szoss h1 { font-size:clamp(1.65rem,6.9vw,2.2rem); }
+ .szoss .event-title-zh { font-size:1rem; margin-top:12px; }
+ .event-badge { width:76px; margin-top:4px; }
+ .event-facts { padding:16px 0; margin-bottom:20px; }
+ .event-facts dl { grid-template-columns:1fr; gap:12px; }
+ .event-facts dl>div { display:grid; grid-template-columns:76px minmax(0,1fr); gap:12px; }
+ .event-facts dl>div+div { border-left:0; padding-left:0; }
+ .event-facts dt { padding-top:2px; margin:0; font-size:.75rem; }
+ .event-facts dd { font-size:.95rem; }
+ .event-facts dd span { font-size:.85rem; }
+ .event-intro { font-size:1rem; }
+ .event-opening>p[lang=zh-Hans] { font-size:.95rem; }
+ .event-opening .btn { width:100%; }
+ .event-small { font-size:.8rem; }
+ .event-local-nav { display:flex; gap:24px; margin-top:12px; }
+ .event-local-nav a { display:flex; align-items:center; min-height:44px; font-size:.9rem; }
+ .event-section { display:block; padding-top:28px; padding-bottom:32px; scroll-margin-top:84px; }
+ .section-heading { margin-bottom:24px; }
+ .szoss h2 { font-size:1.45rem; }
+ .event-topics li { padding-bottom:16px; }
+ .speaker-grid { grid-template-columns:1fr; gap:24px; }
+ .speaker { grid-template-columns:88px minmax(0,1fr); gap:12px 20px; padding-bottom:16px; }
+ .speaker-heading h3 { font-size:1.12rem; }
+ .speaker .speaker-role { font-size:.85rem; }
+ .speaker-bio summary { padding:6px 0; }
+ .registration-panel { padding:20px; }
+ .registration-panel>p { font-size:1rem; }
+ .event-registration .section-heading>p:last-child { display:none; }
+ .event-form-row { grid-template-columns:1fr; gap:0; }
+ #szoss-registration { margin-top:24px; }
+ #szoss-registration button { width:100%; }
+ .event-venue { gap:24px; }
+ .event-footer .wrap { flex-wrap:wrap; gap:20px; }
+ .event-footer p { width:100%; order:1; }
+}
+@media(prefers-reduced-motion:reduce) { .szoss { scroll-behavior:auto; } }

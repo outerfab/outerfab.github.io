@@ -1,0 +1,66 @@
+<form class="form quote-form" id="quote-form" action="{{contact_action}}" method="post">
+  <input type="hidden" name="_redirect" value="{{contact_redirect}}">
+  <input type="hidden" name="_error" value="{{site_url}}/contact/?submission=error">
+  <input type="hidden" name="_append" value="false">
+  <input type="hidden" name="request" value="Website quote request">
+  <input type="hidden" name="Request reference" id="quote-reference" value="">
+  <input type="hidden" name="Submitted at" id="quote-time" value="">
+  <div class="hp" aria-hidden="true"><label>Leave this empty <input name="_honeypot" tabindex="-1" autocomplete="off"></label></div>
+  <fieldset class="service-picker">
+    <legend>Which services are you interested in?</legend>
+    <div class="service-options">
+      <label class="service-option"><input type="checkbox" name="Service: Chip-on-board" value="Chip-on-board" data-service="cob"><span>Chip-on-board</span></label>
+      <label class="service-option"><input type="checkbox" name="Service: Wafer dicing and division" value="Wafer dicing and division" data-service="dicing"><span>Wafer dicing and division</span></label>
+      <label class="service-option"><input type="checkbox" name="Service: Testing" value="Testing" data-service="testing"><span>Testing</span></label>
+      <label class="service-option"><input type="checkbox" name="Service: Kitting and fulfilment" value="Kitting and fulfilment" data-service="kitting"><span>Kitting and fulfilment</span></label>
+      <label class="service-option"><input type="checkbox" name="Service: Sourcing known-good die" value="Sourcing known-good die" data-service="kgd"><span>Sourcing known-good die</span></label>
+      <label class="service-option"><input type="checkbox" name="Service: Crowd Supply launch support" value="Crowd Supply launch support" data-service="crowd-supply"><span>Crowd Supply launch support</span></label>
+    </div>
+  </fieldset>
+  <noscript><p>Include quantities and specifications in your project notes.</p></noscript>
+  <div id="quote-question-status" class="sr" aria-live="polite"></div>
+  <fieldset hidden disabled class="quote-specs" data-questions="cob"><legend>Chip-on-board details</legend><div class="quote-fields">
+    <div class="field"><label for="quote-cob-0">Wire type</label><select id="quote-cob-0" name="Chip-on-board: Wire type"><option value="">Choose</option><option>Gold</option><option>Aluminium</option><option>Not sure</option></select></div>
+    <div class="field"><label for="quote-cob-1">Quantity</label><input id="quote-cob-1" name="Chip-on-board: Quantity" type="text" placeholder="Number of die to bond"></div>
+    <div class="field"><label for="quote-cob-2">Die size</label><input id="quote-cob-2" name="Chip-on-board: Die size" type="text" placeholder="Width × length in mm"></div>
+    <div class="field"><label for="quote-cob-3">Pads on the die</label><input id="quote-cob-3" name="Chip-on-board: Pads on the die" type="text" placeholder="Total number of pads"></div>
+    <div class="field"><label for="quote-cob-4">Pads to bond</label><input id="quote-cob-4" name="Chip-on-board: Pads to bond" type="text" placeholder="If different from the total"></div>
+  </div></fieldset>
+  <fieldset hidden disabled class="quote-specs" data-questions="dicing"><legend>Wafer dicing and division details</legend><div class="quote-fields">
+    <div class="field"><label for="quote-dicing-0">Wafer quantity</label><input id="quote-dicing-0" name="Wafer dicing and division: Wafer quantity" type="text" placeholder="Number of wafers"></div>
+    <div class="field"><label for="quote-dicing-1">Wafer diameter</label><input id="quote-dicing-1" name="Wafer dicing and division: Wafer diameter" type="text" placeholder="In mm or inches"></div>
+    <div class="field"><label for="quote-dicing-2">Die size</label><input id="quote-dicing-2" name="Wafer dicing and division: Die size" type="text" placeholder="Width × length in mm"></div>
+  </div></fieldset>
+  <fieldset hidden disabled class="quote-specs" data-questions="testing"><legend>Testing details</legend><div class="quote-fields">
+    <div class="field"><label for="quote-testing-0">Quantity</label><input id="quote-testing-0" name="Testing: Quantity" type="text" placeholder="Number of boards or die"></div>
+    <div class="field"><label for="quote-testing-1">What needs testing</label><input id="quote-testing-1" name="Testing: What needs testing" type="text" placeholder="For example, bond connections or chip function"></div>
+  </div></fieldset>
+  <fieldset hidden disabled class="quote-specs" data-questions="kitting"><legend>Kitting and fulfilment details</legend><div class="quote-fields">
+    <div class="field"><label for="quote-kitting-0">Product or kit</label><input id="quote-kitting-0" name="Kitting and fulfilment: Product or kit" type="text" placeholder="What needs packing or assembly?"></div>
+    <div class="field"><label for="quote-kitting-1">Quantity</label><input id="quote-kitting-1" name="Kitting and fulfilment: Quantity" type="text" placeholder="Number of units"></div>
+    <div class="field"><label for="quote-kitting-2">Destination</label><input id="quote-kitting-2" name="Kitting and fulfilment: Destination" type="text" placeholder="Country or fulfilment partner"></div>
+  </div></fieldset>
+  <fieldset hidden disabled class="quote-specs" data-questions="kgd"><legend>Sourcing known-good die details</legend><div class="quote-fields">
+    <div class="field"><label for="quote-kgd-0">Part or specification</label><input id="quote-kgd-0" name="Sourcing known-good die: Part or specification" type="text" placeholder="Part number or what you need"></div>
+    <div class="field"><label for="quote-kgd-1">Quantity</label><input id="quote-kgd-1" name="Sourcing known-good die: Quantity" type="text" placeholder="Number of die"></div>
+  </div></fieldset>
+  <fieldset hidden disabled class="quote-specs" data-questions="crowd-supply"><legend>Crowd Supply launch support details</legend><div class="quote-fields">
+    <div class="field"><label for="quote-crowd-supply-0">Project stage</label><select id="quote-crowd-supply-0" name="Crowd Supply launch support: Project stage"><option value="">Choose</option><option>Idea</option><option>Prototype</option><option>Ready to launch</option><option>Campaign running</option><option>After the campaign</option></select></div>
+    <div class="field"><label for="quote-crowd-supply-1">Support needed</label><select id="quote-crowd-supply-1" name="Crowd Supply launch support: Support needed"><option value="">Choose</option><option>Pre-launch communication</option><option>Campaign setup</option><option>Running the campaign</option><option>Production and delivery</option><option>Whole campaign</option></select></div>
+  </div></fieldset>
+  <div class="quote-fields">
+    <div class="field"><label for="quote-name">Name</label><input id="quote-name" name="name" autocomplete="name"></div>
+    <div class="field"><label for="quote-email">Email</label><input id="quote-email" name="email" type="email" autocomplete="email" required></div>
+  </div>
+  <div class="field"><label for="quote-notes">Tell us more about your project</label><textarea id="quote-notes" name="notes" rows="6" placeholder="Anything else we should know: your project, timing, questions, or a link to your files."></textarea></div>
+  <button class="btn" type="submit">get a quote</button>
+  <p id="quote-status" role="status" aria-live="polite"></p>
+  <p class="small form-note">See our <a href="/legal/privacy/">privacy notice</a>.</p>
+</form>
+<section id="quote-receipt" class="quote-receipt" hidden aria-labelledby="quote-receipt-h" tabindex="-1">
+  <h2 id="quote-receipt-h">Request received</h2>
+  <p>We will review your request and follow up with you.</p>
+  <dl id="quote-recap"></dl>
+  <button class="btn ghost" id="quote-download" type="button">save your request</button>
+</section>
+<script src="/assets/quote-form.js" defer></script>

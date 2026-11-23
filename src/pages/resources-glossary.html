@@ -1,0 +1,113 @@
+---
+title: Chip-on-board glossary: COB, glob-top, KGD — Outerfab
+name: Glossary
+description: Short definitions of the terms used in chip-on-board wire bonding: COB, glob-top, KGD, wedge and ball bonding, die attach, working edge, fiducial, waffle pack.
+path: /resources/glossary/
+updated: 2026-10-06
+published: 2026-09-20
+theme: light
+type: article
+schema: glossary
+---
+<section class="art" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="prose">
+      <h1 id="h1"><span class="nb">Chip-on-board</span> glossary</h1>
+      <p class="answer">Short definitions of the terms used across this site, in alphabetical order. Each links to the page that uses it.</p>
+      <dl class="glossary">
+        <dt id="backgrinding">Backgrinding</dt>
+        <dd>Thinning a wafer from the back before dicing, when the die must be thinner than the wafer. See <a href="/services/wafer-dicing/">wafer dicing and division</a>.</dd>
+
+        <dt id="ball-bonding">Ball bonding</dt>
+        <dd>A wire bonding method that forms a ball at the end of the wire and presses it onto the pad, used with gold wire. Compare <a href="#wedge-bonding">wedge bonding</a>.</dd>
+
+        <dt id="bond-finger">Bond finger</dt>
+        <dd>See <a href="#bond-pad">PCB bond pad</a>.</dd>
+
+        <dt id="bond-pad">Bond pad</dt>
+        <dd>A pad a wire is bonded to. Die pads are on the die; PCB bond pads, also called bond fingers, are on the board. See <a href="/resources/pcb-design-for-cob/">bond pads and pitch</a>.</dd>
+
+        <dt id="bonding-diagram">Bonding diagram</dt>
+        <dd>A drawing of the die on the board with a line for each wire from a die pad to a PCB pad. It tells the bonder which pad goes where.</dd>
+
+        <dt id="cob">COB (chip-on-board)</dt>
+        <dd>A bare die glued directly to a printed circuit board and wire-bonded to it, then covered with glob-top. There is no package. See <a href="/services/chip-on-board/">chip-on-board bonding</a>.</dd>
+
+        <dt id="die">Die</dt>
+        <dd>The bare, unpackaged chip, cut from a wafer. The plural is die.</dd>
+
+        <dt id="die-attach">Die attach</dt>
+        <dd>Fixing the die to the board with adhesive, before wire bonding. The pad it sits on is the die attach pad.</dd>
+
+        <dt id="enig">ENIG, ENEPIG</dt>
+        <dd>Surface finishes for PCB pads: electroless nickel with immersion gold (ENIG), and with palladium added (ENEPIG). Both are suitable for wire bonding. HASL and OSP are not.</dd>
+
+        <dt id="esd">ESD structure</dt>
+        <dd>Protection circuitry on a die's pads. We use it to test signal pads: a small current through the structure shows whether the bond is connected. See <a href="/services/testing/">how we test</a>.</dd>
+
+        <dt id="fiducial">Fiducial</dt>
+        <dd>A copper mark on the working edge of a panel that the machine uses to locate it. At least two must stay visible after die attach.</dd>
+
+        <dt id="film-frame">Film frame</dt>
+        <dd>A frame holding dicing tape with singulated die on it. One of the ways die can be supplied. See <a href="/resources/die-handling/">supplying your die</a>.</dd>
+
+        <dt id="glob-top">Glob-top</dt>
+        <dd>The epoxy dome over the die and its wires. Ours is hard AB epoxy, clear or black.</dd>
+
+        <dt id="jig">Jig</dt>
+        <dd>The metal fixture that holds boards or panels on a bonding machine. Fit and dimensions depend on the partner and process; review the panel before ordering.</dd>
+
+        <dt id="kgd">KGD (known-good die)</dt>
+        <dd>Bare die tested at wafer level and sold as working. See <a href="/services/known-good-die/">known-good die sourcing</a>.</dd>
+
+        <dt id="mil">Mil</dt>
+        <dd>One thousandth of an inch, 25.4 &micro;m. Wire diameter is often given in mils: 1.0 mil is 25.4 &micro;m.</dd>
+
+        <dt id="mpw">MPW, shuttle</dt>
+        <dd>A multi-project wafer run, where many designs share one wafer to share the cost. Tiny Tapeout and wafer.space run shuttles.</dd>
+
+        <dt id="open">Open</dt>
+        <dd>A fault where a wire does not connect the die pad to the board pad. One of three faults we test for.</dd>
+
+        <dt id="panel">Panel</dt>
+        <dd>Several boards joined into one PCB and separated after assembly. See <a href="/resources/pcb-design-for-cob/#panel">arranging boards into a panel</a>.</dd>
+
+        <dt id="pitch">Pitch</dt>
+        <dd>The distance from the centre of one pad to the centre of the next.</dd>
+
+        <dt id="pin-1">Pin 1</dt>
+        <dd>The reference pad that defines the orientation of a die. Mark it on the pad map and the bonding diagram.</dd>
+
+        <dt id="short-ground">Short to ground</dt>
+        <dd>A fault where a wire or pad touches ground when it should not.</dd>
+
+        <dt id="short-neighbour">Short to neighbour</dt>
+        <dd>A fault where two adjacent wires touch each other.</dd>
+
+        <dt id="singulation">Singulation, dicing</dt>
+        <dd>Cutting a wafer into individual die.</dd>
+
+        <dt id="slot">Slot size</dt>
+        <dd>The die size on a wafer.space shuttle: 1 x 1, 1 x 0.5, 0.5 x 1 or 0.5 x 0.5.</dd>
+
+        <dt id="tape-reel">Tape and reel</dt>
+        <dd>Die in the pockets of carrier tape wound on a reel. See <a href="/resources/die-handling/#formats">supplying your die</a>.</dd>
+
+        <dt id="waffle-pack">Waffle pack</dt>
+        <dd>A tray with one pocket per die. Our standard supply format.</dd>
+
+        <dt id="wedge-bonding">Wedge bonding</dt>
+        <dd>A wire bonding method that presses the wire flat under a wedge-shaped tool, used with aluminium wire. It is our standard, at 1.0 mil. Compare <a href="#ball-bonding">ball bonding</a>.</dd>
+
+        <dt id="working-edge">Working edge</dt>
+        <dd>A component-free strip along two opposite edges of a board or panel that the machine holds. Also called a rail. It carries the tooling holes and fiducials.</dd>
+      </dl>
+      <div class="article-foot">
+        <ul class="related">
+          <li>Services: <a href="/services/chip-on-board/">Chip-on-board bonding</a></li>
+          <li>Guide: <a href="/resources/pcb-design-for-cob/">PCB design for chip-on-board</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
