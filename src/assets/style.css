@@ -225,6 +225,8 @@ ul.die li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:
 .spec-body .table-wrap{max-width:none}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);max-width:900px}
 .two-col h3{margin-bottom:var(--s3)}
+.two-col.is-3{grid-template-columns:repeat(3,1fr);gap:var(--s6);max-width:none;margin-bottom:var(--s6)}
+.two-col.is-3 p+p{margin-top:var(--s2);font-size:.95rem;overflow-wrap:anywhere}
 ol.jobsteps{list-style:none;padding:0;counter-reset:j;max-width:var(--measure)}
 ol.jobsteps li{counter-increment:j;position:relative;padding:var(--s4) 0 var(--s4) 48px;border-top:1px solid var(--hair)}
 ol.jobsteps li:last-child{border-bottom:1px solid var(--hair)}
@@ -301,6 +303,7 @@ figure.photo img{width:100%;height:auto}
 @media (max-width:900px){
   .cols-2,.spec{grid-template-columns:1fr;gap:var(--s4)}
   .two-col{grid-template-columns:1fr;gap:var(--s5)}
+  .two-col.is-3{grid-template-columns:1fr;gap:var(--s5)}
   .toc ol{columns:1}
   .form .row{grid-template-columns:1fr}
   .cols-3,.ecosystem{grid-template-columns:1fr;gap:var(--s5)}
