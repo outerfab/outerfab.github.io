@@ -131,7 +131,8 @@ SZOSS_EVENT_ID = ENTITY_BASE + "/events/szoss/#event"
 
 # Entities that already have a canonical @id elsewhere keep it, so other sites and this one describe the same node.
 CANONICAL_IDS = {"org": ORG_ID, "szoss": SZOSS_EVENT_ID,
-                 "stephan-boekelmann": "https://maxclerkwell.tech/#person"}  # also used by nabla-b.engineering
+                 "stephan-boekelmann": "https://maxclerkwell.tech/#person",  # also used by nabla-b.engineering
+                 "stuart-childs": "https://saladss.github.io/#person"}
 
 
 def eid(slug):
@@ -162,7 +163,8 @@ def entities():
         "stuart-childs": ({"@type": "Person", "@id": eid("stuart-childs"), "name": "Stuart Childs",
                            "jobTitle": ["Co-founder, Outerfab", "Production Manager, Tiny Tapeout"],
                            "description": "Production, operations and technical project management.",
-                           "email": "stuart@outerfab.com", "worksFor": [ref("org"), ref("tiny-tapeout")], "url": ENTITY_BASE + "/about/"}, ["Stuart Childs"]),
+                           "email": "stuart@outerfab.com", "worksFor": [ref("org"), ref("tiny-tapeout")], "url": "https://saladss.github.io/",
+                           "sameAs": ["https://www.linkedin.com/in/pleased", ENTITY_BASE + "/about/"]}, ["Stuart Childs"]),
         "stephan-boekelmann": ({"@type": "Person", "@id": eid("stephan-boekelmann"), "name": "Stephan Bökelmann",
                                 "alternateName": ["Stephan Boekelmann", "MaxClerkwell"], "jobTitle": "Co-founder",
                                 "description": "Wire bonding, process development and tooling. Physicist, engineer and KiCad community contributor.",
