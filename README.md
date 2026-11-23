@@ -21,7 +21,8 @@ Asset paths start with `/`, so open the site through a local server, not as file
 ## Deployment
 
 `.github/workflows/pages.yml` builds on every push to `main` and deploys `dist/` to GitHub Pages.
-The build runs with `NOINDEX=1` and `SITE_URL=https://outerfab.github.io`: this copy tells search engines to stay away,
-so it does not compete with https://outerfab.com. Remove `NOINDEX` in the workflow when this copy becomes the live site.
+The build runs with `SITE_URL=https://outerfab.com`: this repository is the live site. `outerfab.com` and `www.outerfab.com` point
+to GitHub Pages through Cloudflare DNS (proxied), and the custom domain is set in the repository's Pages settings.
 
 The files `_headers` and `_redirects` in `dist/` are for Cloudflare Pages and have no effect on GitHub Pages.
+The redirects in `site.json` therefore also become small forwarding pages; the security headers are not sent.

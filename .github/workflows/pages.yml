@@ -23,8 +23,7 @@ jobs:
           python-version: "3.12"
       - name: Build site
         env:
-          SITE_URL: https://outerfab.github.io
-          NOINDEX: "1"
+          SITE_URL: https://outerfab.com
         run: python3 build.py --strict
       - uses: actions/upload-pages-artifact@v3
         with:

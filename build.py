@@ -385,6 +385,15 @@ def main():
         else:
             redirect_lines.append("%s/ %s 301" % (source, target))
     (DIST / "_redirects").write_text("\n".join(redirect_lines) + "\n")
+    # GitHub Pages ignores _redirects, so every redirect also gets a small page that forwards the visitor.
+    for item in redirects:
+        target = SITE_URL + item["to"]
+        stub = DIST / item["from"].strip("/") / "index.html"
+        stub.parent.mkdir(parents=True, exist_ok=True)
+        stub.write_text('<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><title>Moved</title>'
+                        '<link rel="canonical" href="%s"><meta name="robots" content="noindex,follow">'
+                        '<meta http-equiv="refresh" content="0; url=%s"></head>'
+                        '<body><p>This page has moved to <a href="%s">%s</a>.</p></body></html>\n' % (target, target, target, html.escape(item["to"])))
 
     for p in pages:
         meta, body, path, canonical = p["meta"], p["body"], p["path"], p["canonical"]
